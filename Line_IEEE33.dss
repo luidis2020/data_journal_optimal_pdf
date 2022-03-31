@@ -1,0 +1,84 @@
+! Line definitions
+! Default is None - assumes length units match impedance units.
+
+New line.1-2 Bus1=1	Bus2=2	             R1=0.0922	X1=0.0470  enabled=yes        !units=1
+New line.2-3 Bus1=2	Bus2=3	             R1=0.4930	X1=0.2511 enabled=yes        !units=1
+New line.3-4 Bus1=3	Bus2=4	             R1=0.3660	X1=0.1864  enabled=yes       !units=1
+New line.4-5 Bus1=4	Bus2=5	             R1=0.3811	X1=0.1941  enabled=yes       !units=1
+New line.5-6 Bus1=5	Bus2=6	             R1=0.8190	X1=0.7070  enabled=yes       !units=1
+New line.6-7 Bus1=6	Bus2=7	             R1=0.1872	X1=0.6188 enabled=yes        !units=1
+New line.7-8 Bus1=7	Bus2=8	             R1=0.7114	X1=0.2351  enabled=yes       !units=1! Other data shows X1=1.7114 R1=1.2351
+New line.8-9 Bus1=8	Bus2=9	            R1=1.0300    X1=0.7400  enabled=yes                !units=1
+New line.9-10 Bus1=9	Bus2=10	R1=1.0440	X1=0.7400  enabled=yes                     !units=1     
+New line.10-11 Bus1=10	Bus2=11	R1=0.1966	X1=0.0650  enabled=yes                     !units=1
+New line.11-12 Bus1=11	Bus2=12	R1=0.3744	X1=0.1238  enabled=yes                     !units=1
+New line.12-13 Bus1=12	Bus2=13	R1=1.4680                X1=1.1550  enabled=yes                !units=1
+New line.13-14 Bus1=13	Bus2=14	R1=0.5416	X1=0.7129  enabled=yes                     !units=1
+New line.14-15 Bus1=14	Bus2=15	R1=0.5910	X1=0.5260 enabled=yes                      !units=1 
+New line.15-16 Bus1=15	Bus2=16	R1=0.7463	X1=0.5450 enabled=yes                      !units=1 
+New line.16-17 Bus1=16	Bus2=17	R1=1.2890	X1=1.7210  enabled=yes                     !units=1
+New line.17-18 Bus1=17	Bus2=18	R1=0.7320	X1=0.5740 enabled=yes                      !units=1! Other data shows R1=0.3720
+
+
+New line.2-19 Bus1=2	Bus2=19	R1=0.1640	X1=0.1565  enabled=yes                    !units=1
+New line.19-20 Bus1=19	Bus2=20	R1=1.5042	X1=1.3554  enabled=yes                    !units=1
+New line.20-21 Bus1=20	Bus2=21	R1=0.4095	X1=0.4784  enabled=yes                    !units=1
+New line.21-22 Bus1=21	Bus2=22	R1=0.7089	X1=0.9373  enabled=yes                    !units=1
+
+New line.3-23 Bus1=3	Bus2=23	R1=0.4512	X1=0.3083  enabled=yes                    !units=1
+New line.23-24 Bus1=23	Bus2=24	R1=0.8980	X1=0.7091  enabled=yes                    !units=1
+New line.24-25 Bus1=24	Bus2=25	R1=0.8960	X1=0.7011  enabled=yes                    !units=1 
+
+New line.6-26 Bus1=6	Bus2=26	R1=0.2030	X1=0.1034  enabled=yes                    !units=1
+New line.26-27 Bus1=26	Bus2=27	R1=0.2842	X1=0.1447  enabled=yes                    !units=1
+New line.27-28 Bus1=27	Bus2=28	R1=1.0590	X1=0.9337  enabled=yes                    !units=1
+New line.28-29 Bus1=28	Bus2=29	R1=0.8042	X1=0.7006 enabled=yes                     !units=1 
+New line.29-30 Bus1=29	Bus2=30	R1=0.5075	X1=0.2585  enabled=yes                    !units=1
+New line.30-31 Bus1=30	Bus2=31	R1=0.9744	X1=0.9630  enabled=yes                    !units=1
+New line.31-32 Bus1=31	Bus2=32	R1=0.3105	X1=0.3619  enabled=yes                    !units=1
+New line.32-33 Bus1=32	Bus2=33	R1=0.3410	X1=0.5302  enabled=yes                    !units=1 ! Other data shows X1=0.5362
+
+!dump line.1-2 debug
+!dump line.2-3 debug
+!dump line.3-4 debug
+!dump line.4-5 debug
+!dump line.5-6 debug
+!dump line.6-7 debug
+!dump line.7-8 debug
+!dump line.8-9 debug
+!dump line.9-10 debug
+!dump line.10-11 debug
+!dump line.11-12 debug
+!dump line.12-13 debug
+!dump line.13-14 debug
+!dump line.14-15 debug
+!dump line.15-16 debug
+!dump line.16-17 debug
+!dump line.17-18 debug
+
+!dump line.2-19 debug
+!dump line.19-20 debug
+!dump line.20-21 debug
+!dump line.21-22 debug
+
+!dump line.3-23 debug
+!dump line.23-24 debug
+!dump line.24-25 debug
+
+!dump line.6-26 debug
+!dump line.26-27 debug
+!dump line.27-28 debug
+!dump line.28-29 debug
+!dump line.29-30 debug
+!dump line.30-31 debug
+!dump line.31-32 debug
+!dump line.32-33 debug
+
+
+
+
+!New line.21-8 Bus1=21          Bus2=8   R1=2.0000  X1=2.0000 units=1 enabled=no
+!New line.9-15 Bus1=9          Bus2=15   R1=2.0000  X1=2.0000 units=1 enabled=no
+!New line.12-22 Bus1=12         Bus2=22   R1=2.0000  X1=2.0000 units=1 enabled=no
+!New line.18-33 Bus1=18          Bus2=33   R1=0.5000  X1=0.5000 units=1 enabled=no
+!New line.25-29 Bus1=25          Bus2=29   R1=0.5000  X1=0.5000 units=1 enabled=no

@@ -1,0 +1,142 @@
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// UNESP Campus- Ilha Solteira 2020
+// Introdution to OpenDSS
+// IEEE33 bus radial test sytem 
+// This system is considered as balanced for the sake of simplicity, though real applications should be considering unbalanced networks.
+// Name: Luis Gustavo Cordero Bautista
+// Email: luis.gc.bautista@unesp.br
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clear                                                                                 ! always have this as the first line before defining a new circuit
+
+Set DefaultBaseFrequency=60                                             ! frequency model of 60Hz, except for european LV systems which is 50Hz 
+                                                                                        ! this frequency keep saved in the Registry of OpenDSS
+                                                                                        ! if working with different frequency, state it right after Clear command
+
+
+//----------------------------------------------------------------------------Alternative 1- Equivalent Thevenin-----------------------------------------------------------------------------------------------------------------------
+New Circuit.IEEE_33_BUS                                                                    !  This creates new circuit (class Circuit), and it begins with the equivalent Thevenin information by default phases=3
+~ basekv=12.66 pu=1.0 Bus1=1 MVAsc3=450000                                  !  Defining the Vsource element, OpenDSS internally calculates a series equivalent impendance Zs and mutual impendance Zm. 
+                                                                                                          !  Properties : basekv, pu, Bus1, MVAsc3, MVAsc1, etc.
+                                                                                                          
+                                                                                                          ! Select options:
+                                                                                                          ! 1. setting for balanced system requires only MVAsc3 (3 phase short circuit) or Isc3
+                                                                                                          ! 2. setting for unbalanced system requires MVAsc3 and MVAsc1 or
+                                                                                                          ! 3. setting for unbalanced system requires Isc3 and Isc1 or
+                                                                                                          ! 4. z1=[r1,x1] and z0=[r0,x0]
+                                                                                                         
+
+//----------------------------------------------------------------------------Alternative 2-Equivalent Thevenin-----------------------------------------------------------------------------------------------------------------------
+!New Circuit.Equivalent_Thevenin_33_Bus                                              ! Modelling the bulk system (HV), make the source stiff with small short cirtuit impedance or viceversa with large mvasc3,1
+!~ basekv=115 pu=1 phases=3 bus1=SourceBus 
+!~ angle=0
+!~ MVAsc3=5000000                                                                            
+
+!New Transformer.TR1 phases=3 windings=2    xhl=0.0001                        ! Properties for transformer, xhl and %r may be set by default (short-circuit reactance)
+!~ wdg=1 bus=SourceBus conn=delta kV=115 kVA=27500 %r=0.0000005    ! Properties for winding 1 (winding of HV side)
+!~ wdg=2 bus=1 conn=wye kV=12.66 kVA=27500 %r=0.0000005
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+AddBusMarker Bus=1 Code=36 color=Red size=2                                     ! Marker properties
+//-----------------------------------------------------Cicuit Description-----------------------------------------------------------------------------------------------------------------------
+
+
+Redirect Line_IEEE33.DSS
+Batchedit Line..* C1=0 C0=0 ! OpenDSS set default values for zero zequence values to simulate a real systems (based on sourcecode).
+                                         ! However, for the sake of simplicity, this values are considered zero (similar to baseline data from AMPL)
+Batchedit Line..* units=km
+Batchedit Line..* length=1
+
+
+// Energy Meter installed Line1-2 (from this point the meter *observes downstream the system)
+New Energymeter.Meter_1 Line.1-2 terminal=1
+New monitor.line_12p element=line.1-2 terminal=1 mode=1 ppolar=no ! Powers
+New monitor.line_12v element=line.1-2 terminal=1 mode=0 ppolar=no ! Voltage and Currents
+
+
+New monitor.line_18p element=line.17-18 terminal=1 mode=1 ppolar=no ! Powers
+New monitor.line_18v element=line.17-18 terminal=1 mode=0 ppolar=no ! Voltage and Currents
+
+
+Redirect Load_IEEE33.DSS
+Batchedit Load..* Vminpu=0.9 ! Default settings for minimum and maximum voltages are in the range of 0.95-1.05. Beforehand knowledge gives voltage lower than 0.95, for this reason, 
+                                           ! the setting is modified to vminpu=0.9. 
+!New Loadshape.LoadType npts=24 interval=1  mult=(File=Industrial_curve_t1.csv, col=2, header=yes) action=normalize
+!Batchedit Load..* daily=LoadType
+
+
+Redirect Gen_IEEE33.DSS
+!New Loadshape.GenShape  npts=24  interval=1  mult=(File=Gen_curve.csv, col=2, header=yes) action=normalize
+!Batchedit Generator..* daily=GenShape
+
+
+//---------------------------------------CALCULATION OPTIONS-----------------------------------------------------------//
+
+
+//-------------------------------------- SNAPSHOT------------------------------------------------------------//
+!set controlmode=STATIC
+!set mode=snapshot ! 
+//--------------------------------------------------------------------------------------------------//
+
+//-------------------------------------- DAILY------------------------------------------------------------//
+!set mode=daily
+!set stepsize=1h
+!set number=24
+
+set voltagebases= 12.66  ! if considered a transformer HV/LV and load connected at different voltage levels, this setting should include all voltages operation for the system.
+calcvoltagebases
+
+!solve ! Once the model is defined, use the command solve.
+
+!cktlosses
+
+!CalcIncMatrix_O
+!Export IncMatrix
+!Export IncMatrixRow
+!Export IncMatrixCols
+!Export BusLevels
+
+
+
+//----------------------------------Coordinates for System--------------------------------//
+
+
+BusCoords IEEE33Node_BusXY.csv ! The coordinates gives a practical access to state variables of the systems by circuit plot (daisy plot)
+                                                    ! Coordinates points are selected based on user knowledge or it may be built under GIS information.
+ 
+
+//--------------------------------------------------------------------------------------------------//
+! Results would show the next values to confirm right executions:
+! Vmin=0.91309
+! Total Active Power loss = 202.6 kw
+! Total Reactive Power loss = 135.13 kvar
+
+
+/**** Begin Block Comment ****
+set demand=true
+set DIVerbose=true
+set voltexceptionreport = true
+solve
+closeDI
+**** End Block Comment ****/
+
+
+!Export monitors line_12v
+!Plot monitor object= line_12v channels=(1 3 5 ) bases=[7283 7283 7283]
+
+!Export monitors line_12p
+!Plot monitor object= line_12p channels=(1 3 5 )
+
+
+!Export monitors line_18v
+!Plot monitor object= line_18v channels=(1 3 5 ) bases=[7283 7283 7283]
+
+!Export monitors line_18p
+!Plot monitor object= line_18p channels=(1 3 5 )
+!plot daisy Power max=2000 n n C1=$00FF0000
+
+!set demand=true
+!set DIVerbose=true
+!set voltexceptionreport = true
+!solve
+!closeDI

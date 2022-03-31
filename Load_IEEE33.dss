@@ -1,0 +1,37 @@
+
+! Default values for connection and model are written as an example for load description.
+
+
+New Load.1       Bus1=1              kW=0   kvar=0   conn=Wye Model=1 kv=12.66 ! 100% industrial
+New Load.2	Bus1=2	            kW=100	kvar=60 conn=Wye Model=1 kv=12.66 ! 100% industrial                   
+New Load.3	Bus1=3              kW=90	kvar=40 conn=Wye Model=1 kv=12.66 ! 100% industrial 
+New Load.4	Bus1=4        	kW=120	kvar=80 conn=Wye Model=1 kv=12.66 ! 100% industrial 
+New Load.5	Bus1=5   	kW=60	kvar=30 conn=Wye Model=1 kv=12.66 ! 100% industrial 
+New Load.6	Bus1=6	            kW=60	kvar=20 conn=Wye Model=1 kv=12.66 ! 100% commercial 
+New Load.7	Bus1=7	            kW=200	kvar=100 conn=Wye Model=1 kv=12.66 ! 100% commercial 
+New Load.8	Bus1=8	            kW=200	kvar=100 conn=Wye Model=1 kv=12.66 ! 100% commercial
+New Load.9	Bus1=9	            kW=60	kvar=20 conn=Wye Model=1 kv=12.66 ! 100% commercial
+New Load.10	Bus1=10	kW=60	kvar=20 conn=Wye Model=1 kv=12.66 ! 50% residentail 50% commercial
+New Load.11	Bus1=11	kW=45	kvar=30 conn=Wye Model=1 kv=12.66  ! 50% residentail 50% commercial
+New Load.12	Bus1=12	kW=60	kvar=35 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.13	Bus1=13	kW=60	kvar=35 conn=Wye Model=1  kv=12.66 ! 100% residential
+New Load.14	Bus1=14	kW=120	kvar=80 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.15	Bus1=15	kW=60	kvar=10 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.16	Bus1=16	kW=60	kvar=20 conn=Wye Model=1  kv=12.66 ! 100% residential
+New Load.17	Bus1=17	kW=60	kvar=20 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.18	Bus1=18	kW=90	kvar=40 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.19	Bus1=19	kW=90	kvar=40 conn=Wye Model=1  kv=12.66 ! 100% industrial
+New Load.20	Bus1=20	kW=90	kvar=40 conn=Wye Model=1 kv=12.66 ! 100% industrial
+New Load.21	Bus1=21	kW=90	kvar=40 conn=Wye Model=1 kv=12.66 ! 100% industrial
+New Load.22	Bus1=22	kW=90	kvar=40 conn=Wye Model=1 kv=12.66 ! 100% industrial
+New Load.23	Bus1=23	kW=90	kvar=50 conn=Wye Model=1 kv=12.66 ! 100% industrial
+New Load.24	Bus1=24	kW=420	kvar=200 conn=Wye Model=1 kv=12.66 ! 100% industrial
+New Load.25	Bus1=25	kW=420	kvar=200 conn=Wye Model=1 kv=12.66 ! 100% industrial 
+New Load.26	Bus1=26	kW=60	kvar=25 conn=Wye Model=1 kv=12.66  ! 100% commercial
+New Load.27	Bus1=27	kW=60	kvar=25 conn=Wye Model=1  kv=12.66 ! 100% commercial
+New Load.28	Bus1=28	kW=60	kvar=20 conn=Wye Model=1 kv=12.66 ! 100% commercial
+New Load.29	Bus1=29	kW=120	kvar=70 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.30	Bus1=30	kW=200	kvar=600 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.31	Bus1=31	kW=150	kvar=70 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.32	Bus1=32	kW=210	kvar=100 conn=Wye Model=1 kv=12.66 ! 100% residential
+New Load.33	Bus1=33	kW=60	kvar=40 conn=Wye Model=1 kv=12.66 ! 100% residential

@@ -1,0 +1,11 @@
+// Photovoltaic Generator
+!Redirect Gen_photovoltaic_data.DSS
+
+!New Loadshape.GenShape  npts=24  interval=1  mult=(File=Gen_curve.csv, col=2, header=yes) action=normalize
+       
+New Generator.GenPV18 Phases=3 Bus1=18 kV=12.66 kW=838.91 kvar=0 model=7  !daily=GenShape
+New Generator.GenPV30 Phases=3 Bus1=30 kV=12.66 kW=1000 kvar=0 model=7  !daily=GenShape 
+New Generator.GenPV22 Phases=3 Bus1=22 kV=12.66 kW=1000 kvar=0 model=7  !daily=GenShape 
+New Generator.GenPV25 Phases=3 Bus1=25 kV=12.66 kW=1000 kvar=0 model=7  !daily=GenShape 
+New Generator.GenPV14 Phases=3 Bus1=14 kV=12.66 kW=1000 kvar=0 model=7  !daily=GenShape 
+New Generator.GenPV33 Phases=3 Bus1=33 kV=12.66 kW=1000 kvar=0 model=7  !daily=GenShape
